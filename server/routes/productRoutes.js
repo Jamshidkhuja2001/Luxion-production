@@ -5,6 +5,7 @@ const {
   updateProduct,
   deleteProduct,
   deleteMany,
+  findOne,
 } = require("../controllers/productController");
 const { create } = require("../models/productModel");
 
@@ -14,5 +15,6 @@ router.route("/luxion").get(getAllProducts).post(createProduct);
 router.route("/update/:id").patch(updateProduct);
 router.route("/delete/:id").delete(deleteProduct);
 router.route("/deletemany/").delete(deleteMany);
+router.route("/luxion/:id").get(findOne);
 
 module.exports = router;

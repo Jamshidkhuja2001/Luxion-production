@@ -1,4 +1,5 @@
 const Product = require("./../models/productModel");
+const { findById } = require("./../models/productModel");
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -50,5 +51,14 @@ exports.updateProduct = async (req, res) => {
     res.send(updatedUser);
   } catch (err) {
     console.error(err.message);
+  }
+};
+
+exports.findOne = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.json(product);
+  } catch (err) {
+    console.log(err);
   }
 };

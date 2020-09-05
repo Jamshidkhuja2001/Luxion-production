@@ -21,3 +21,16 @@ td {
 th {
   text-align: left;
 }
+
+.form-edit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px #eee;
+  background: #fff;
+  z-index: 9 !important;
+  width: 400px;
+  height: 500px;
+  padding: 20px;
+}

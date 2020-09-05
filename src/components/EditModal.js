@@ -8,14 +8,24 @@ import {
   Nabor,
   Parfyum,
 } from "./options/index";
-export const Form = (props) => {
+
+export const EditModal = (props) => {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [name, setName] = useState("");
   const [types, setTypes] = useState("");
   const [purchase, setPurchase] = useState("");
   const [sale, setSale] = useState("");
-
+  const [product, setProduct] = useState("");
+  useEffect(() => {
+    axios
+      .get(`/luxion/${props._id}`)
+      .then((res) => {
+        setProduct(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   const [selectedCategory, setSelectedCategory] = useState("");
   let Option = () => <ochishenie />;
   if (selectedCategory === "Очищение") Option = () => <Ochishenie />;
@@ -27,6 +37,14 @@ export const Form = (props) => {
 
   const handleSubmit = (e) => {
     const product = {
+      category: category,
+      subCategory: subCategory,
+      name: name,
+      types: types,
+      purchase: purchase,
+      sale: sale,
+    };
+    const updatedProduct = {
       category,
       subCategory,
       name,
@@ -35,18 +53,22 @@ export const Form = (props) => {
       sale,
     };
     // JSON.parse(product);
-    axios.post(`/luxion`, product).then((res) => {
-      console.log(res);
+    axios.patch(`/update/${props._id}`, updatedProduct).then((res) => {
       console.log(res.data);
     });
 
     console.log(product);
   };
   return (
-    <form
-      onSubmit={handleSubmit}
-      className=" form-group d-flex justify-content-between form-header pb-4"
-    >
+    <form onSubmit={handleSubmit} className="form-edit pb-4">
+      <button
+        onClick={props.click}
+        type="button"
+        class="close"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
       <div className="d-flex flex-column">
         <label htmlFor="cars">Категория</label>
         <select
@@ -119,7 +141,7 @@ export const Form = (props) => {
       </div>
       <div className="d-flex flex-column mt-4">
         <button type="submit" className="btn btn-primary">
-          Add
+          Изменить
         </button>
       </div>
     </form>

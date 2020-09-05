@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Row } from "./Row";
 import axios from "axios";
 
@@ -14,42 +14,8 @@ export const List = (props) => {
   }, []);
   console.log(products);
 
-  // const prods = [
-  //   {
-  //     category: "category",
-  //     subCategory: "subCategory",
-  //     name: "yrwyw",
-  //     types: "yrwywy",
-  //     purchase: 5325,
-  //     sale: 6426,
-  //   },
-  //   {
-  //     category: "category",
-  //     subCategory: "subCategory",
-  //     name: "yrwyw",
-  //     types: "yrwywy",
-  //     purchase: 5325,
-  //     sale: 6426,
-  //   },
-  //   {
-  //     category: "category",
-  //     subCategory: "subCategory",
-  //     name: "yrwyw",
-  //     types: "yrwywy",
-  //     purchase: 5325,
-  //     sale: 6426,
-  //   },
-  //   {
-  //     category: "category",
-  //     subCategory: "subCategory",
-  //     name: "yrwyw",
-  //     types: "yrwywy",
-  //     purchase: 5325,
-  //     sale: 6426,
-  //   },
-  // ];
   return (
-    <table style={{ width: "100%" }} className="my-2">
+    <table className="table table-striped table-responsive-md table-responsive-sm">
       <thead>
         <tr>
           <th>№</th>
@@ -59,6 +25,7 @@ export const List = (props) => {
           <th>Тип</th>
           <th>Покуп</th>
           <th>Продаж</th>
+          <th>Операции</th>
           {/* <th>-</th>
         <th>edit</th> */}
         </tr>
@@ -74,6 +41,7 @@ export const List = (props) => {
             types={data.types}
             purchase={data.purchase}
             sale={data.sale}
+            number={products.indexOf(data)}
           />
         ))}
       </tbody>
