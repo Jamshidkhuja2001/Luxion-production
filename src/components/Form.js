@@ -29,6 +29,11 @@ export const Form = (props) => {
     e.preventDefault();
     setOpen(true);
   };
+  const closeHandler = (e) => {
+    e.preventDefault();
+
+    setOpen(false);
+  };
   const handleSubmit = (e) => {
     const product = {
       category,
@@ -53,6 +58,14 @@ export const Form = (props) => {
       </button>
       {open ? (
         <form onSubmit={handleSubmit} className="form-edit">
+          <button
+            onClick={closeHandler}
+            type="button"
+            class="close"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
           <div className="d-flex flex-column">
             <label htmlFor="cars">Категория</label>
             <select
