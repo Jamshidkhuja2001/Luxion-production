@@ -11,15 +11,18 @@ const app = express();
 
 dotenv.config({ path: "config.env" });
 
-const DB = process.env.DB;
+// const DB = process.env.DB;
 
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
+  .connect(
+    "mongodb+srv://luxion:luxion123@luxion.kysfk.mongodb.net/products?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    }
+  )
   .then(() => {
     console.log("DB connection successful");
   })
