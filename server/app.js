@@ -49,8 +49,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.static(path.join(__dirname + "../build")));
-app.get("/luxion", (req, res) => {
+app.use(express.static(path.join(__dirname, "../build")));
+
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../build"));
 });
 

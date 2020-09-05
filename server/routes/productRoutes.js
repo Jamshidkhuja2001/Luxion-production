@@ -10,7 +10,7 @@ const { create } = require("../models/productModel");
 
 const router = express.Router();
 
-router.route("/").get(getAllProducts).post(createProduct);
+router.route("/luxion").get(getAllProducts).post(createProduct);
 router.route("/update/:id").patch(updateProduct);
 router.route("/delete/:id").delete(deleteProduct);
 router.route("/deletemany/").delete(deleteMany);
