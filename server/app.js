@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 });
 
 app.use((req, res, next) => {
-  res.set("Cache-Control", "no-store");
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
   next();
 });
 
