@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
+const nocache = require("nocache");
 
 const productRoute = require("./routes/productRoutes");
 
@@ -49,10 +50,17 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.static(path.join(__dirname, "../build")));
+app.set("etag", false);
 
+app.use(express.static(path.join(__dirname, "../build")));
+app.use(nocache());
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../build"));
+});
+
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
 });
 
 const PORT = process.env.PORT || 5000;
