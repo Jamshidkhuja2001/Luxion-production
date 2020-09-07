@@ -49,7 +49,7 @@ export const Form = (props) => {
       props.renderState(true);
     });
 
-    console.log(product);
+    setOpen(false);
   };
   return (
     <>

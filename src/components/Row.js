@@ -43,6 +43,7 @@ export const Row = (props) => {
         {editBtn ? (
           <EditModal
             click={() => setEditBtn(false)}
+            renderWindow={setEditBtn}
             _id={props._id}
             render={props.render}
             renderValue={props.renderValue}

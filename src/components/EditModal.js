@@ -60,6 +60,7 @@ export const EditModal = (props) => {
     });
 
     console.log(product);
+    props.renderWindow(false);
   };
   return (
     <form onSubmit={handleSubmit} className="form-edit pb-4">
