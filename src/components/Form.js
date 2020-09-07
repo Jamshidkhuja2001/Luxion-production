@@ -35,6 +35,7 @@ export const Form = (props) => {
     setOpen(false);
   };
   const handleSubmit = (e) => {
+    e.preventDefault();
     const product = {
       category,
       subCategory,
@@ -45,8 +46,7 @@ export const Form = (props) => {
     };
     // JSON.parse(product);
     axios.post(`/luxion`, product).then((res) => {
-      console.log(res);
-      console.log(res.data);
+      props.renderState(true);
     });
 
     console.log(product);
@@ -114,7 +114,6 @@ export const Form = (props) => {
           <div className="d-flex flex-column">
             <label htmlFor="cars">Тип Продукта</label>
             <input
-              required
               type="text"
               onChange={(e) => setTypes(e.target.value)}
               value={types}

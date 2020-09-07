@@ -22,10 +22,10 @@ export const EditModal = (props) => {
       .get(`/luxion/${props._id}`)
       .then((res) => {
         setProduct(res.data);
-        console.log(res.data);
+        props.render(false);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [props.renderValue]);
   const [selectedCategory, setSelectedCategory] = useState("");
   let Option = () => <ochishenie />;
   if (selectedCategory === "Очищение") Option = () => <Ochishenie />;
@@ -36,6 +36,8 @@ export const EditModal = (props) => {
   if (selectedCategory === "Парфюм") Option = () => <Parfyum />;
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    props.render(true);
     const product = {
       category: category,
       subCategory: subCategory,

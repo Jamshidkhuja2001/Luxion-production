@@ -4,12 +4,17 @@ import { EditModal } from "./EditModal";
 
 export const Row = (props) => {
   const [editBtn, setEditBtn] = useState(false);
+
   let deleteHandler = (id) => {
-    axios.delete(`/delete/${id}`).then(() => window.location.reload(false));
+    axios.delete(`/delete/${id}`).then(() => reRender());
   };
   let updateHandler = (id) => {
     // axios.patch(`/update/${id}`).then(() => window.location.reload(false));
     console.log(id);
+  };
+
+  let reRender = () => {
+    props.renderState(true);
   };
   return (
     <tr>
@@ -36,7 +41,12 @@ export const Row = (props) => {
           Изменить
         </button>
         {editBtn ? (
-          <EditModal click={() => setEditBtn(false)} _id={props._id} />
+          <EditModal
+            click={() => setEditBtn(false)}
+            _id={props._id}
+            render={props.render}
+            renderValue={props.renderValue}
+          />
         ) : null}
       </td>
     </tr>
