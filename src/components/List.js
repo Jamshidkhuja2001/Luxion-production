@@ -5,16 +5,19 @@ import axios from "axios";
 export const List = (props) => {
   const [render, setRender] = useState(false);
   const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/luxion")
-      .then((res) => {
-        setProducts(res.data.products);
-        setRender(false);
-        props.setRenderState(false);
-      })
-      .catch((error) => console.log(error));
-  }, [render, props.renderState]);
+  useEffect(
+    (props) => {
+      axios
+        .get("/luxion")
+        .then((res) => {
+          setProducts(res.data.products);
+          setRender(false);
+          props.setRenderState(false);
+        })
+        .catch((error) => console.log(error));
+    },
+    [render, props.renderState]
+  );
 
   return (
     <table className="table table-striped table-responsive-md table-responsive-sm">
